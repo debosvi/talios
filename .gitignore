@@ -1,0 +1,20 @@
+# kde
+.directory
+
+# cmake stuffs
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+
+#project specific
+build/
+builds/
+dl/
+new_comp*
+*.tmpl
+
+# temp file
+*~

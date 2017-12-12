@@ -1,0 +1,9 @@
+#!/bin/bash 
+
+export TALIOS_PROJECT_DIR=$PWD
+export TALIOS_BUILD_DIR=$TALIOS_PROJECT_DIR/builds
+export TALIOS_SYSROOT_DIR=$TALIOS_BUILD_DIR/usr
+export ARCH=i686
+export TARGET=i686
+export PATH=$TALIOS_SYSROOT_DIR/bin:$PATH
+# export NB_CPUS=1
