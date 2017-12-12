@@ -40,11 +40,11 @@ int TPoint::orientation(const TPoint& p, const TPoint& q, const TPoint& r) {
     // for details of below formula.
     // int val = (q.y - p.y) * (r.x - q.x) -
     //           (q.x - p.x) * (r.y - q.y);
-    int val1 = (q.getY() - p.getY()) * (r.getX() - q.getX());
-    int val2 = (q.getX() - p.getX()) * (r.getY() - q.getY());
-    int val = val1-val2;
+    float val1 = (q.getY() - p.getY()) * (r.getX() - q.getX());
+    float val2 = (q.getX() - p.getX()) * (r.getY() - q.getY());
+    float val = val1-val2;
     
-    if (!val) return ORIENT_COLINEAR;  // colinear
+    if (fabs(val)<0.0001f) return ORIENT_COLINEAR;  // colinear
     
     return ((val > 0) ? ORIENT_CLOCKWISE: ORIENT_ANTI_CLOCKWISE); // clock or counterclock wise
 }
