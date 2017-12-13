@@ -13,15 +13,15 @@ TSegment::TSegment(const TSegment &s) : m_p(s.m_p), m_q(s.m_q) { }
         
 TSegment::~TSegment() {}
 
-TPoint TSegment::getP() const { return m_p; }
-TPoint TSegment::getQ() const { return m_q; }
+TPoint TSegment::p() const { return m_p; }
+TPoint TSegment::q() const { return m_q; }
 
-TSegment& TSegment::setP(const TPoint& p) {
+TSegment& TSegment::p(const TPoint& p) {
     m_p = p;
     return (*this);
 }
 
-TSegment& TSegment::setQ(const TPoint& q) {
+TSegment& TSegment::q(const TPoint& q) {
     m_q = q;
     return (*this);
 }
@@ -29,10 +29,10 @@ TSegment& TSegment::setQ(const TPoint& q) {
 bool TSegment::isCrossing(const TSegment &s) const {
     // Find the four orientations needed for general and
     // special cases
-    int o1 = TPoint::orientation(m_p, m_q, s.getP());
-    int o2 = TPoint::orientation(m_p, m_q, s.getQ());
-    int o3 = TPoint::orientation(s.getP(), s.getQ(), m_p);
-    int o4 = TPoint::orientation(s.getP(), s.getQ(), m_q);
+    int o1 = TPoint::orientation(m_p, m_q, s.p());
+    int o2 = TPoint::orientation(m_p, m_q, s.q());
+    int o3 = TPoint::orientation(s.p(), s.q(), m_p);
+    int o4 = TPoint::orientation(s.p(), s.q(), m_q);
     
     // General case
     if (o1 != o2 && o3 != o4)
@@ -40,23 +40,23 @@ bool TSegment::isCrossing(const TSegment &s) const {
     
     // Special Cases
     // p, m_q and q are colinear and q lies on segment pm_q
-    if ((o1 == TPoint::ORIENT_COLINEAR) && onSegment(m_p, s.getP(), m_q)) return true;
+    if ((o1 == TPoint::ORIENT_COLINEAR) && onSegment(m_p, s.p(), m_q)) return true;
     
-    // m_p, m_q and s.getP() are colinear and s.getQ() lies on segment m_pm_q
-    if ((o2 == TPoint::ORIENT_COLINEAR) && onSegment(m_p, s.getQ(), m_q)) return true;
+    // m_p, m_q and s.p() are colinear and s.q() lies on segment m_pm_q
+    if ((o2 == TPoint::ORIENT_COLINEAR) && onSegment(m_p, s.q(), m_q)) return true;
     
-    // s.getP(), s.getQ() and m_p are colinear and m_p lies on segment s.getP()s.getQ()
-    if ((o3 == TPoint::ORIENT_COLINEAR) && onSegment(s.getP(), m_p, s.getQ())) return true;
+    // s.p(), s.q() and m_p are colinear and m_p lies on segment s.p()s.q()
+    if ((o3 == TPoint::ORIENT_COLINEAR) && onSegment(s.p(), m_p, s.q())) return true;
     
-    // s.getP(), s.getQ() and m_q are colinear and m_q lies on segment s.getP()s.getQ()
-    if ((o4 == TPoint::ORIENT_COLINEAR) && onSegment(s.getP(), m_q, s.getQ())) return true;
+    // s.p(), s.q() and m_q are colinear and m_q lies on segment s.p()s.q()
+    if ((o4 == TPoint::ORIENT_COLINEAR) && onSegment(s.p(), m_q, s.q())) return true;
     
     return false; // Doesn't fall in any of the above cases}
 }
 
 bool TSegment::onSegment(const TPoint& p, const TPoint& q, const TPoint& r) {
-    if (q.getX() <= fmax(p.getX(), r.getX()) && q.getX() >= fmin(p.getX(), r.getX()) &&
-        q.getY() <= fmax(p.getY(), r.getY()) && q.getY() >= fmin(p.getY(), r.getY()))
+    if (q.x() <= fmax(p.x(), r.x()) && q.x() >= fmin(p.x(), r.x()) &&
+        q.y() <= fmax(p.y(), r.y()) && q.y() >= fmin(p.y(), r.y()))
         return true;
     
     return false;

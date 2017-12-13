@@ -9,15 +9,15 @@ namespace Talios {
 class TSegment {
     
 public:
-    TSegment(const float p1, const float q1, const float p2, const float q2);
+    TSegment(const float p1=0.0f, const float q1=0.0f, const float p2=0.0f, const float q2=0.0f);
     TSegment(const TPoint &p, const TPoint &q);
     TSegment(const TSegment &s);
     ~TSegment();
     
-    TPoint getP() const;
-    TPoint getQ() const;
-    TSegment& setP(const TPoint& p);
-    TSegment& setQ(const TPoint& q);
+    TPoint p() const;
+    TPoint q() const;
+    TSegment& p(const TPoint& p);
+    TSegment& q(const TPoint& q);
     
     bool isCrossing(const TSegment &s) const;
 

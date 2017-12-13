@@ -47,6 +47,7 @@ static void test_crossing_5(void) {
 
 
 int main(void) {
+	TSegment s1;
     test_crossing_1();
     test_crossing_2();
     test_crossing_3();

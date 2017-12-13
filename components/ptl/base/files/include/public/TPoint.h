@@ -11,10 +11,10 @@ public:
     TPoint(const TPoint &p);
     ~TPoint();
     
-    float getX() const;
-    float getY() const;
-    TPoint& setX(const float x);
-    TPoint& setY(const float y);
+    float x() const;
+    float y() const;
+    TPoint& x(const float x);
+    TPoint& y(const float y);
     float distanceTo(const TPoint&p) const;
     static int orientation(const TPoint& p, const TPoint& q, const TPoint& r);
 

@@ -1,27 +1,19 @@
 
 ## generation profile name.
-## mandatory (generates library profile)
-set(COMP_SRC_PROFILE "library")
+## mandatory (generates application for testing profile)
+set(COMP_SRC_PROFILE "test")
 
-## COMP_SRC_LIB_TYPE var must be set to either 'static', 'shared' or 'both'.
+## COMP_SRC_TEST_NAME var must be set to binary name (it will be automatically prefixed with 'test_' in order to identify easly appart from oyhre binaries).
 ## mandatory
-set(COMP_SRC_LIB_TYPE "both")
-
-## COMP_SRC_LIB_NAME var must be set to library name (without prefix and extension).
-## mandatory
-set(COMP_SRC_LIB_NAME "talios_base")
+set(COMP_SRC_TEST_NAME "TU_square")
 
 ## LOCAL_SRC_DIR_SUFFIX is the relative path prefix to append to component files directory in order to find source files to compile.
 ## optional but recommended
-set(LOCAL_SRC_DIR_SUFFIX lib)
+set(LOCAL_SRC_DIR_SUFFIX test)
 
-## LOCAL_SRC_FILES is the list of files to compile (do not use any absolute path, automatic appending is performed by complete makefiles scheme.
+## LOCAL_SRC_FILES is the list of files to compile (do not use any absolute path, automatic appending is performed by complte makefiles scheme.
 ## mandatory
-set(LOCAL_SRC_FILES 
-    TPoint.cpp
-    TSegment.cpp
-    TSquare.cpp
-)
+set(LOCAL_SRC_FILES TU_square.cpp)
 
 ## LOCAL_SRC_FILES_ADDED is the list of files to compile with absolute path (useful if generated files are somewhere).
 ## optional
@@ -40,9 +32,8 @@ set(LOCAL_SRC_FILES
 ## COMP_SRC_LIB_DEPS_SHARED is the list of shared library dependencies (internal dependencies only).
 ## Be careful about system compatibility between static and shared libraries.
 ## optional
-# set(COMP_SRC_LIB_DEPS_SHARED other_shared_lib)
-
+set(COMP_SRC_LIB_DEPS_SHARED talios_base)
 
 ## COMP_EXT_LIB_DEPS is the list of external library dependencies.
 ## optional
-set(COMP_EXT_LIB_DEPS m)
+# set(COMP_EXT_LIB_DEPS ${CUnit_LIBRARIES})
