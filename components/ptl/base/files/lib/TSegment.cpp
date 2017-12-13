@@ -5,7 +5,7 @@
 
 namespace Talios {
     
-TSegment::TSegment(const float x1, const float y1, const float x2, const float y2) : m_p(x1,y1), m_q(x2,y2) {}
+TSegment::TSegment(const TDecimal x1, const TDecimal y1, const TDecimal x2, const TDecimal y2) : m_p(x1,y1), m_q(x2,y2) {}
     
 TSegment::TSegment(const TPoint &p, const TPoint &q) : m_p(p), m_q(q) {}
 
@@ -62,7 +62,7 @@ bool TSegment::onSegment(const TPoint& p, const TPoint& q, const TPoint& r) {
     return false;
 }
 
-float TSegment::computeSurface(const TPoint& p) const {
+TDecimal TSegment::computeSurface(const TPoint& p) const {
     return TPoint::computeSurface(m_p, m_q, p);
 }
 

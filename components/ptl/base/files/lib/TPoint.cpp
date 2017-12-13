@@ -5,7 +5,7 @@
 
 namespace Talios {
     
-TPoint::TPoint(const float x, const float y) :
+TPoint::TPoint(const TDecimal x, const TDecimal y) :
         m_x(x), m_y(y) {
 }
 
@@ -13,24 +13,24 @@ TPoint::TPoint(const TPoint &p) : m_x(p.m_x), m_y(p.m_y) { }
         
 TPoint::~TPoint() {}
 
-float TPoint::x() const {
+TDecimal TPoint::x() const {
     return m_x;
 }
 
-float TPoint::y() const {
+TDecimal TPoint::y() const {
     return m_y;
 }
 
-float TPoint::distanceTo(const TPoint &p) const {
+TDecimal TPoint::distanceTo(const TPoint &p) const {
     return sqrt(pow(p.x()-m_x, 2.0f)+pow(p.y()-m_y, 2.0f));
 }
 
-TPoint& TPoint::x(const float x) {
+TPoint& TPoint::x(const TDecimal x) {
     m_x=x;
     return (*this);
 }
 
-TPoint& TPoint::y(const float y) {
+TPoint& TPoint::y(const TDecimal y) {
     m_y=y;
     return (*this);
 }
@@ -40,20 +40,20 @@ int TPoint::orientation(const TPoint& p, const TPoint& q, const TPoint& r) {
     // for details of below formula.
     // int val = (q.y - p.y) * (r.x - q.x) -
     //           (q.x - p.x) * (r.y - q.y);
-    float val1 = (q.y() - p.y()) * (r.x() - q.x());
-    float val2 = (q.x() - p.x()) * (r.y() - q.y());
-    float val = val1-val2;
+    TDecimal val1 = (q.y() - p.y()) * (r.x() - q.x());
+    TDecimal val2 = (q.x() - p.x()) * (r.y() - q.y());
+    TDecimal val = val1-val2;
     
-    if (fabs(val)<0.0000001f) return ORIENT_COLINEAR;  // colinear
+    if (fabs(val)<C_ERROR_THRESHOLD) return ORIENT_COLINEAR;  // colinear
     
     return ((val > 0) ? ORIENT_CLOCKWISE: ORIENT_ANTI_CLOCKWISE); // clock or counterclock wise
 }
 
-float TPoint::computeSurface(const TPoint& p, const TPoint& q, const TPoint& r) {
-    float a=p.distanceTo(q);
-    float b=p.distanceTo(r);
-    float c=r.distanceTo(q);
-    float s=(a+b+c)/2;
+TDecimal TPoint::computeSurface(const TPoint& p, const TPoint& q, const TPoint& r) {
+    TDecimal a=p.distanceTo(q);
+    TDecimal b=p.distanceTo(r);
+    TDecimal c=r.distanceTo(q);
+    TDecimal s=(a+b+c)/2;
     return sqrt(s*(s-a)*(s-b)*(s-c));
 }
 
