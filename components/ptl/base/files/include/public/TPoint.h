@@ -17,6 +17,7 @@ public:
     TPoint& y(const float y);
     float distanceTo(const TPoint&p) const;
     static int orientation(const TPoint& p, const TPoint& q, const TPoint& r);
+    static float computeSurface(const TPoint& p, const TPoint& q, const TPoint& r);
 
     static const int ORIENT_COLINEAR = 0;
     static const int ORIENT_CLOCKWISE = 1;

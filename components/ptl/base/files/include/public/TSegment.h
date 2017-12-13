@@ -20,6 +20,7 @@ public:
     TSegment& q(const TPoint& q);
     
     bool isCrossing(const TSegment &s) const;
+    float computeSurface(const TPoint& p) const;
 
     static bool onSegment(const TPoint& p, const TPoint& q, const TPoint& r);
         

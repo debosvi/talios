@@ -44,9 +44,17 @@ int TPoint::orientation(const TPoint& p, const TPoint& q, const TPoint& r) {
     float val2 = (q.x() - p.x()) * (r.y() - q.y());
     float val = val1-val2;
     
-    if (fabs(val)<0.0001f) return ORIENT_COLINEAR;  // colinear
+    if (fabs(val)<0.0000001f) return ORIENT_COLINEAR;  // colinear
     
     return ((val > 0) ? ORIENT_CLOCKWISE: ORIENT_ANTI_CLOCKWISE); // clock or counterclock wise
+}
+
+float TPoint::computeSurface(const TPoint& p, const TPoint& q, const TPoint& r) {
+    float a=p.distanceTo(q);
+    float b=p.distanceTo(r);
+    float c=r.distanceTo(q);
+    float s=(a+b+c)/2;
+    return sqrt(s*(s-a)*(s-b)*(s-c));
 }
 
 } // namespace Talios

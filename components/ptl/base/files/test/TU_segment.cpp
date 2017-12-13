@@ -5,54 +5,17 @@
 
 using namespace Talios; 
 
-static void test_crossing_1(void) {
-    TSegment s1(1.0f, 0.0f, 4.0f, 5.0f);
-    TSegment s2(0.0f, 2.0f, 10.0f, 4.0f);
-    
-    fprintf(stderr, "%s, crossing (CURRENT:%d/EXPECTED:%d)\n", __PRETTY_FUNCTION__, s1.isCrossing(s2), 1);
-    
+static void test_crossing(const TSegment &s1, const TSegment& s2, const bool expected) {
+    fprintf(stderr, "crossing (CURRENT:%d/EXPECTED:%d)\n", s1.isCrossing(s2), expected);
 }
-
-static void test_crossing_2(void) {
-    TSegment s1(1.0f, 0.0f, 0.0f, 5.0f);
-    TSegment s2(0.0f, 2.0f, 10.0f, 4.0f);
-    
-    fprintf(stderr, "%s, crossing (CURRENT:%d/EXPECTED:%d)\n", __PRETTY_FUNCTION__, s1.isCrossing(s2), 1);
-    
-}
-
-static void test_crossing_3(void) {
-    TSegment s1(1.0f, 0.0f, 2.0f, 4.0f);
-    TSegment s2(0.0f, 5.0f, 10.0f, 6.0f);
-    
-    fprintf(stderr, "%s, crossing (CURRENT:%d/EXPECTED:%d)\n", __PRETTY_FUNCTION__, s1.isCrossing(s2), 0);
-    
-}
-
-static void test_crossing_4(void) {
-    TSegment s1(1.0f, 0.0f, 2.0f, 4.0f);
-    TSegment s2(3.0f, 5.0f, 10.0f, 6.0f);
-    
-    fprintf(stderr, "%s, crossing (CURRENT:%d/EXPECTED:%d)\n", __PRETTY_FUNCTION__, s1.isCrossing(s2), 0);
-    
-}
-
-static void test_crossing_5(void) {
-    TSegment s1(2.0f, 4.0f, 1.0f, 0.0f);
-    TSegment s2(3.0f, 5.0f, 10.0f, 6.0f);
-    
-    fprintf(stderr, "%s, crossing (CURRENT:%d/EXPECTED:%d)\n", __PRETTY_FUNCTION__, s1.isCrossing(s2), 0);
-    
-}
-
 
 int main(void) {
 	TSegment s1;
-    test_crossing_1();
-    test_crossing_2();
-    test_crossing_3();
-    test_crossing_4();
-    test_crossing_5();
+    test_crossing(TSegment(1.0f, 0.0f, 4.0f, 5.0f), TSegment(0.0f, 2.0f, 10.0f, 4.0f), 1);
+    test_crossing(TSegment(1.0f, 0.0f, 0.0f, 5.0f), TSegment(0.0f, 2.0f, 10.0f, 4.0f), 1);
+    test_crossing(TSegment(1.0f, 0.0f, 2.0f, 4.0f), TSegment(0.0f, 5.0f, 10.0f, 6.0f), 0);
+    test_crossing(TSegment(1.0f, 0.0f, 2.0f, 4.0f), TSegment(3.0f, 5.0f, 10.0f, 6.0f), 0);
+    test_crossing(TSegment(2.0f, 4.0f, 1.0f, 0.0f), TSegment(3.0f, 5.0f, 10.0f, 6.0f), 0);
     
     return 0;
 }

@@ -20,6 +20,8 @@ public:
     TPoint bl() const;
     TPoint br() const;
     
+    float surface() const;
+    
     bool isIn(const TPoint &p) const;
         
 private:

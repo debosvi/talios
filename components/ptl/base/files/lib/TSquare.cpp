@@ -10,10 +10,10 @@ TSquare::TSquare(const float x1, const float y1, const float x2, const float y2)
 {}
     
 TSquare::TSquare(const TPoint &p, const float lg) : 
-	m_tl(p.x()-lg/2.0f,p.y()-lg/2.0f), 
-	m_tr(p.x()+lg/2.0f,p.y()-lg/2.0f), 
-	m_bl(p.x()-lg/2.0f,p.y()+lg/2.0f), 
-	m_br(p.x()+lg/2.0f,p.y()+lg/2.0f)
+	m_tl(p.x()-lg/2.0f,p.y()+lg/2.0f), 
+	m_tr(p.x()+lg/2.0f,p.y()+lg/2.0f), 
+	m_bl(p.x()-lg/2.0f,p.y()-lg/2.0f), 
+	m_br(p.x()+lg/2.0f,p.y()-lg/2.0f)
 {}
  
 TSquare::TSquare(const float cx, const float cy, const float lg)  : 
@@ -35,7 +35,18 @@ TPoint TSquare::bl() const { return m_bl; }
 TPoint TSquare::br() const { return m_br; }
 
 bool TSquare::isIn(const TPoint &p) const {
-	return true;
+    float sq_surf=this->surface();
+    float s1=TPoint::computeSurface(m_tl, m_tr, p);
+    float s2=TPoint::computeSurface(m_tl, m_bl, p);
+    float s3=TPoint::computeSurface(m_br, m_bl, p);
+    float s4=TPoint::computeSurface(m_br, m_tr, p);
+    float p_surf=s1+s2+s3+s4;
+    if((p_surf-sq_surf)<0.0000001f) return true;
+    return false;
+}
+
+float TSquare::surface() const {
+    return m_tl.distanceTo(m_tr)*m_tl.distanceTo(m_bl);
 }
 
 } // namespace Talios
