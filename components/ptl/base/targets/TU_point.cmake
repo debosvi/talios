@@ -36,4 +36,4 @@ set(COMP_SRC_LIB_DEPS_SHARED talios_base)
 
 ## COMP_EXT_LIB_DEPS is the list of external library dependencies.
 ## optional
-# set(COMP_EXT_LIB_DEPS ${CUnit_LIBRARIES})
+set(COMP_EXT_LIB_DEPS cppunit)

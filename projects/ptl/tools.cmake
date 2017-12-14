@@ -8,3 +8,4 @@
 # include_directories(${CUnit_INCLUDE_DIRS})
 # link_directories(${CUnit_LIBRARY_DIRS})
 
+link_directories($ENV{HOME}/cross/native/lib)
