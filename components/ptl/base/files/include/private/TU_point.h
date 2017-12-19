@@ -2,6 +2,7 @@
 #define __TALIOS_TPOINT_CPPUNIT_H__
 
 #include <cppunit/extensions/HelperMacros.h>
+
 #include <talios/TPoint.h>
 
 class TPoint_cppunit : public CppUnit::TestFixture
@@ -19,7 +20,7 @@ public:
     void distance_to();
     
 private:
-    void _length(const TPoint& p1, const TPoint& p2, const float check);
+    void _length(const Talios::TPoint& p1, const Talios::TPoint& p2, const float check);
 
 };
 

@@ -13,7 +13,10 @@ set(LOCAL_SRC_DIR_SUFFIX test)
 
 ## LOCAL_SRC_FILES is the list of files to compile (do not use any absolute path, automatic appending is performed by complte makefiles scheme.
 ## mandatory
-set(LOCAL_SRC_FILES TU_point.cpp)
+set(LOCAL_SRC_FILES 
+	Talios_CPP_App.cpp
+	TU_point.cpp
+	)
 
 ## LOCAL_SRC_FILES_ADDED is the list of files to compile with absolute path (useful if generated files are somewhere).
 ## optional
