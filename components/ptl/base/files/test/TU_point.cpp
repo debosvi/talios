@@ -15,18 +15,39 @@ void TPoint_cppunit::setUp() {
 void TPoint_cppunit::tearDown() {
 }
 
-void TPoint_cppunit::length() {
-    _length(TPoint(0.0f, 0.0f), TPoint(0.0f, 1.0f), 1.0f);
-    _length(TPoint(0.0f, 0.0f), TPoint(1.0f, 0.0f), 1.0f);
-    _length(TPoint(0.0f, 0.0f), TPoint(1.0f, 1.0f), sqrt(2));
+void TPoint_cppunit::distance() {
+    _distance(TPoint(0.0f, 0.0f), TPoint(0.0f, 1.0f), 1.0f);
+    _distance(TPoint(0.0f, 0.0f), TPoint(1.0f, 0.0f), 1.0f);
+    _distance(TPoint(0.0f, 0.0f), TPoint(1.0f, 1.0f), sqrt(2));
 }
 
-void TPoint_cppunit::_length(const TPoint & p1, const TPoint & p2,
-                             const float check) {
-    float dist = p1.distanceTo(p2);
-    CPPUNIT_ASSERT(fabs(dist - check) < C_ERROR_THRESHOLD);
+void TPoint_cppunit::orientation() {
+    _orientation(TPoint(0.0f, 0.0f), TPoint(0.0f, 1.0f), TPoint(0.0f, 2.0f), TPoint::ORIENT_COLINEAR);
+    _orientation(TPoint(0.0f, 0.0f), TPoint(1.0f, 1.0f), TPoint(2.0f, 2.0f), TPoint::ORIENT_COLINEAR);
+    _orientation(TPoint(0.0f, 0.0f), TPoint(1.0f, 0.0f), TPoint(2.0f, 0.0f), TPoint::ORIENT_COLINEAR);
+    _orientation(TPoint(0.0f, 0.0f), TPoint(2.0f, 0.0f), TPoint(1.0f, -1.0f), TPoint::ORIENT_CLOCKWISE);
+    _orientation(TPoint(0.0f, 0.0f), TPoint(2.0f, 0.0f), TPoint(1.0f, 1.0f), TPoint::ORIENT_ANTI_CLOCKWISE);
 }
 
-void TPoint_cppunit::distance_to() {
-    CPPUNIT_ASSERT(true);
+void TPoint_cppunit::surface() {
+    _surface(TPoint(0.0f, 0.0f), TPoint(0.0f, 1.0f), TPoint(0.0f, 2.0f), 0.0f);
+    _surface(TPoint(0.0f, 0.0f), TPoint(0.0f, 2.0f), TPoint(1.0f, 0.0f), 1.0f);
+    _surface(TPoint(0.0f, 0.0f), TPoint(2.0f, 0.0f), TPoint(0.0f, 1.0f), 1.0f);
+    _surface(TPoint(0.0f, 0.0f), TPoint(1.0f, 1.0f), TPoint(1.0f, 0.0f), 1.0f/2.0f);
+    _surface(TPoint(-1.0f, 1.0f), TPoint(1.0f, 1.0f), TPoint(0.0f, -1.0f), 2.0f);
+}
+
+void TPoint_cppunit::_distance(const TPoint &p1, const TPoint &p2, const float check) {
+    float res = p1.distanceTo(p2);
+    CPPUNIT_ASSERT(fabs(res - check) < C_ERROR_THRESHOLD);
+}
+
+void TPoint_cppunit::_orientation(const TPoint &p1, const TPoint &p2, const TPoint &p3, const int check) {
+    float res = TPoint::orientation(p1, p2, p3);
+    CPPUNIT_ASSERT(res==check);
+}
+
+void TPoint_cppunit::_surface(const TPoint &p1, const TPoint &p2, const TPoint &p3, const float check) {
+    float res = TPoint::surface(p1, p2, p3);
+    CPPUNIT_ASSERT(fabs(res - check) < C_ERROR_THRESHOLD);
 }

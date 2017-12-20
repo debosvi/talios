@@ -62,8 +62,8 @@ bool TSegment::onSegment(const TPoint& p, const TPoint& q, const TPoint& r) {
     return false;
 }
 
-TDecimal TSegment::computeSurface(const TPoint& p) const {
-    return TPoint::computeSurface(m_p, m_q, p);
+TDecimal TSegment::surface(const TPoint& p) const {
+    return TPoint::surface(m_p, m_q, p);
 }
 
 } // namespace Talios

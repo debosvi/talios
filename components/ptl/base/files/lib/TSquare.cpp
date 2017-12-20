@@ -36,10 +36,10 @@ TPoint TSquare::br() const { return m_br; }
 
 bool TSquare::isIn(const TPoint &p) const {
     TDecimal sq_surf=this->surface();
-    TDecimal s1=TPoint::computeSurface(m_tl, m_tr, p);
-    TDecimal s2=TPoint::computeSurface(m_tl, m_bl, p);
-    TDecimal s3=TPoint::computeSurface(m_br, m_bl, p);
-    TDecimal s4=TPoint::computeSurface(m_br, m_tr, p);
+    TDecimal s1=TPoint::surface(m_tl, m_tr, p);
+    TDecimal s2=TPoint::surface(m_tl, m_bl, p);
+    TDecimal s3=TPoint::surface(m_br, m_bl, p);
+    TDecimal s4=TPoint::surface(m_br, m_tr, p);
     TDecimal p_surf=s1+s2+s3+s4;
     if((p_surf-sq_surf)<C_ERROR_THRESHOLD) return true;
     return false;

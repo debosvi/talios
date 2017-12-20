@@ -4,7 +4,7 @@
 #include <talios/TPoint.h>
 
 namespace Talios {
-    
+
 TPoint::TPoint(const TDecimal x, const TDecimal y) :
         m_x(x), m_y(y) {
 }
@@ -49,7 +49,7 @@ int TPoint::orientation(const TPoint& p, const TPoint& q, const TPoint& r) {
     return ((val > 0) ? ORIENT_CLOCKWISE: ORIENT_ANTI_CLOCKWISE); // clock or counterclock wise
 }
 
-TDecimal TPoint::computeSurface(const TPoint& p, const TPoint& q, const TPoint& r) {
+TDecimal TPoint::surface(const TPoint& p, const TPoint& q, const TPoint& r) {
     TDecimal a=p.distanceTo(q);
     TDecimal b=p.distanceTo(r);
     TDecimal c=r.distanceTo(q);

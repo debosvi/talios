@@ -19,7 +19,7 @@ public:
     TPoint& y(const TDecimal y);
     TDecimal distanceTo(const TPoint&p) const;
     static int orientation(const TPoint& p, const TPoint& q, const TPoint& r);
-    static TDecimal computeSurface(const TPoint& p, const TPoint& q, const TPoint& r);
+    static TDecimal surface(const TPoint& p, const TPoint& q, const TPoint& r);
 
     static const int ORIENT_COLINEAR = 0;
     static const int ORIENT_CLOCKWISE = 1;
