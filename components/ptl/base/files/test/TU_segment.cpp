@@ -19,8 +19,8 @@ void TSegment_cppunit::surface() {
     _surface(TSegment(0.0f, 0.0f, 2.0f, 0.0f), TPoint(1.0f, 1.0f), 1.0f);
 }
 
-void TSegment_cppunit::_surface(const Talios::TSegment& s, const Talios::TPoint& p, const float check) {
-    float res = s.surface(p);
+void TSegment_cppunit::_surface(const Talios::TSegment& s, const Talios::TPoint& p, const TDecimal check) {
+    TDecimal res = s.surface(p);
     CPPUNIT_ASSERT(fabs(res - check) < C_ERROR_THRESHOLD);
 }
 

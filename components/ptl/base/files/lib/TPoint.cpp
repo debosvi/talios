@@ -57,4 +57,21 @@ TDecimal TPoint::surface(const TPoint& p, const TPoint& q, const TPoint& r) {
     return sqrt(s*(s-a)*(s-b)*(s-c));
 }
 
+bool TPoint::operator<(const TPoint& other) const {
+    return (m_x < other.m_x);
+}
+
+bool TPoint::operator>(const TPoint& other) const {
+    return !(other<(*this));
+}
+
+bool TPoint::operator==(const TPoint& other) const {
+    return (m_x == other.m_x) && (m_y == other.m_y);
+}
+
+bool TPoint::operator!=(const TPoint& other) const {
+    return !(other==(*this));
+}
+
+
 } // namespace Talios

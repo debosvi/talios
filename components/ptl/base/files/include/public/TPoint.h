@@ -18,6 +18,12 @@ public:
     TPoint& x(const TDecimal x);
     TPoint& y(const TDecimal y);
     TDecimal distanceTo(const TPoint&p) const;
+    
+    bool operator<(const TPoint &other) const;
+    bool operator>(const TPoint &other) const;
+    bool operator==(const TPoint &other) const;
+    bool operator!=(const TPoint &other) const;
+    
     static int orientation(const TPoint& p, const TPoint& q, const TPoint& r);
     static TDecimal surface(const TPoint& p, const TPoint& q, const TPoint& r);
 

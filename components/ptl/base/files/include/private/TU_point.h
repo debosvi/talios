@@ -5,6 +5,8 @@
 
 #include <talios/TPoint.h>
 
+using namespace Talios;
+
 class TPoint_cppunit : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE( TPoint_cppunit );
@@ -22,9 +24,9 @@ public:
     void surface();
     
 private:
-    void _distance(const Talios::TPoint& p1, const Talios::TPoint& p2, const float check);
+    void _distance(const Talios::TPoint& p1, const Talios::TPoint& p2, const TDecimal check);
     void _orientation(const Talios::TPoint& p1, const Talios::TPoint& p2, const Talios::TPoint& p3, const int check);
-    void _surface(const Talios::TPoint& p1, const Talios::TPoint& p2, const Talios::TPoint& p3, const float check);
+    void _surface(const Talios::TPoint& p1, const Talios::TPoint& p2, const Talios::TPoint& p3, const TDecimal check);
 };
 
 #endif  // __TALIOS_TPOINT_CPPUNIT_H__

@@ -10,6 +10,7 @@ class TSquare {
     
 public:
     TSquare(const TDecimal x1=0.0f, const TDecimal y1=0.0f, const TDecimal x2=0.0f, const TDecimal y2=0.0f);
+    TSquare(const TPoint &p, const TPoint& q);
     TSquare(const TPoint &p, const TDecimal lg);
     TSquare(const TDecimal cx, const TDecimal cy, const TDecimal lg);
     TSquare(const TSquare &s);
@@ -21,16 +22,19 @@ public:
     TPoint br() const;
     
     TDecimal surface() const;
+    bool operator==(const TSquare &other) const;
+    bool operator!=(const TSquare &other) const;
+    TListSegment split();
     
     bool isIn(const TPoint &p) const;
-        
+    
 private:
     TPoint m_tl;
-    TPoint m_tr;
-    TPoint m_bl;
     TPoint m_br;
 };
-    
+
+typedef std::list<TSquare> TListSquare;
+
 } // namespace Talios
 
 #endif // __TALIOS_TSQUARE_HPP__

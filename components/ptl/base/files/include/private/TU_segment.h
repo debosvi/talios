@@ -5,6 +5,8 @@
 
 #include <talios/TSegment.h>
 
+using namespace Talios;
+
 class TSegment_cppunit : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE( TSegment_cppunit );
@@ -18,7 +20,7 @@ public:
     void surface();
     
 private:
-    void _surface(const Talios::TSegment& s, const Talios::TPoint& p, const float check);
+    void _surface(const Talios::TSegment& s, const Talios::TPoint& p, const TDecimal check);
 
 };
 

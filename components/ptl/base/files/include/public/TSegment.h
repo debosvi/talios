@@ -2,6 +2,7 @@
 #ifndef __TALIOS_TSEGMENT_HPP__
 #define __TALIOS_TSEGMENT_HPP__
 
+#include <list>
 #include <talios/TPoint.h>
 
 namespace Talios {
@@ -18,6 +19,9 @@ public:
     TPoint q() const;
     TSegment& p(const TPoint& p);
     TSegment& q(const TPoint& q);
+
+    bool operator==(const TSegment &other) const;
+    bool operator!=(const TSegment &other) const;
     
     bool isCrossing(const TSegment &s) const;
     TDecimal surface(const TPoint& p) const;
@@ -28,7 +32,9 @@ private:
     TPoint m_p;
     TPoint m_q;
 };
-    
+
+typedef std::list<TSegment> TListSegment;
+
 } // namespace Talios
 
 #endif // __TALIOS_TSEGMENT_HPP__

@@ -37,17 +37,17 @@ void TPoint_cppunit::surface() {
     _surface(TPoint(-1.0f, 1.0f), TPoint(1.0f, 1.0f), TPoint(0.0f, -1.0f), 2.0f);
 }
 
-void TPoint_cppunit::_distance(const TPoint &p1, const TPoint &p2, const float check) {
-    float res = p1.distanceTo(p2);
+void TPoint_cppunit::_distance(const TPoint &p1, const TPoint &p2, const TDecimal check) {
+    TDecimal res = p1.distanceTo(p2);
     CPPUNIT_ASSERT(fabs(res - check) < C_ERROR_THRESHOLD);
 }
 
 void TPoint_cppunit::_orientation(const TPoint &p1, const TPoint &p2, const TPoint &p3, const int check) {
-    float res = TPoint::orientation(p1, p2, p3);
+    TDecimal res = TPoint::orientation(p1, p2, p3);
     CPPUNIT_ASSERT(res==check);
 }
 
-void TPoint_cppunit::_surface(const TPoint &p1, const TPoint &p2, const TPoint &p3, const float check) {
-    float res = TPoint::surface(p1, p2, p3);
+void TPoint_cppunit::_surface(const TPoint &p1, const TPoint &p2, const TPoint &p3, const TDecimal check) {
+    TDecimal res = TPoint::surface(p1, p2, p3);
     CPPUNIT_ASSERT(fabs(res - check) < C_ERROR_THRESHOLD);
 }

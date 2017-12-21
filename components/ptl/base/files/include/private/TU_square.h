@@ -9,6 +9,7 @@ class TSquare_cppunit : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE( TSquare_cppunit );
     CPPUNIT_TEST( isIn );
+    CPPUNIT_TEST( split );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -16,6 +17,7 @@ public:
     void tearDown();
 
     void isIn();
+    void split();
     
 private:
     void _isIn(const Talios::TSquare& s, const Talios::TPoint& p, const bool check);

@@ -31,6 +31,14 @@ void TSquare_cppunit::isIn() {
     _isIn(sq, p5, true);
 }
 
+void TSquare_cppunit::split() {
+    TPoint c(1.0f, 2.0f);
+    TSquare sq(c, 6.0f);
+    
+    TListSegment ls=sq.split();
+    CPPUNIT_ASSERT(ls.size()==4);
+}
+
 void TSquare_cppunit::_isIn(const Talios::TSquare& s, const Talios::TPoint& p, const bool check) {
     bool res = s.isIn(p);
     CPPUNIT_ASSERT(res==check);

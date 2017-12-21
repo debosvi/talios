@@ -19,3 +19,4 @@ include(${PRJ_DIR}/components/tools/ext-build/cmake/boz-build.cmake)
 include(tools.cmake)
 
 BOZ_COMPS_FIND_ALL("${PRJ_DIR}/components/ptl/base")
+BOZ_COMPS_FIND_ALL("${PRJ_DIR}/components/ptl/design")

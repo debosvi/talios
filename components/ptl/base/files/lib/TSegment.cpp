@@ -5,9 +5,18 @@
 
 namespace Talios {
     
-TSegment::TSegment(const TDecimal x1, const TDecimal y1, const TDecimal x2, const TDecimal y2) : m_p(x1,y1), m_q(x2,y2) {}
+TSegment::TSegment(const TDecimal x1, const TDecimal y1, const TDecimal x2, const TDecimal y2) : 
+    TSegment(TPoint(x1,y1), TPoint(x2,y2)) {}
     
-TSegment::TSegment(const TPoint &p, const TPoint &q) : m_p(p), m_q(q) {}
+TSegment::TSegment(const TPoint &p, const TPoint &q) :  
+        m_p(p), m_q(q) {
+    if(m_p<m_q) {
+        TPoint aux=m_p;
+        m_p=m_q;
+        m_q=aux;
+    }
+}
+
 
 TSegment::TSegment(const TSegment &s) : m_p(s.m_p), m_q(s.m_q) { }
         
@@ -25,6 +34,18 @@ TSegment& TSegment::q(const TPoint& q) {
     m_q = q;
     return (*this);
 }
+
+
+bool TSegment::operator==(const TSegment& other) const {
+    bool b1=(m_p.x() == other.m_p.x()) && (m_p.y() == other.m_p.y());
+    bool b2=(m_q.x() == other.m_q.x()) && (m_q.y() == other.m_q.y());
+    return (b1&&b2);
+}
+
+bool TSegment::operator!=(const TSegment& other) const {
+    return !(other==(*this));
+}
+
 
 bool TSegment::isCrossing(const TSegment &s) const {
     // Find the four orientations needed for general and
