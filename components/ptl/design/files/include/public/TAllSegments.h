@@ -16,6 +16,7 @@ public:
     void reset();
     void addSquare(const TSquare& s);
     int count() const;
+    TListSquare squares() const;
     TListSegment split();
     
 private:

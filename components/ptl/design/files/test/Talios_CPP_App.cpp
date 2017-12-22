@@ -40,8 +40,7 @@ int main(int argc, char **argv) {
 
     // Add the top suite to the test runner
     CPPUNIT_NS::TestRunner runner;
-    CPPUNIT_NS::Test * tests =
-        CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest();
+    CPPUNIT_NS::Test * tests = CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest();
     runner.addTest(tests);
 
     //Display

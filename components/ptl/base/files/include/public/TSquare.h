@@ -26,7 +26,7 @@ public:
     bool operator!=(const TSquare &other) const;
     TListSegment split();
     
-    bool isIn(const TPoint &p) const;
+    bool in(const TPoint &p) const;
     
 private:
     TPoint m_tl;

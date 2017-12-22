@@ -5,13 +5,17 @@
 
 namespace Talios {
 
-TPoint::TPoint(const TDecimal x, const TDecimal y) :
-        m_x(x), m_y(y) {
+TPoint::TPoint(const TDecimal x, const TDecimal y, const bool valid) :
+        m_x(x), m_y(y), m_valid(valid) {
 }
 
-TPoint::TPoint(const TPoint &p) : m_x(p.m_x), m_y(p.m_y) { }
+TPoint::TPoint(const TPoint &p) : m_x(p.m_x), m_y(p.m_y), m_valid(true) { }
         
 TPoint::~TPoint() {}
+
+bool TPoint::valid() const {
+	return m_valid;
+}
 
 TDecimal TPoint::x() const {
     return m_x;
@@ -33,6 +37,11 @@ TPoint& TPoint::x(const TDecimal x) {
 TPoint& TPoint::y(const TDecimal y) {
     m_y=y;
     return (*this);
+}
+
+TPoint& TPoint::valid(const bool valid) {
+	m_valid=valid;
+	return (*this);
 }
 
 int TPoint::orientation(const TPoint& p, const TPoint& q, const TPoint& r) {
@@ -62,11 +71,13 @@ bool TPoint::operator<(const TPoint& other) const {
 }
 
 bool TPoint::operator>(const TPoint& other) const {
-    return !(other<(*this));
+    return !((*this)<other);
 }
 
 bool TPoint::operator==(const TPoint& other) const {
-    return (m_x == other.m_x) && (m_y == other.m_y);
+	bool b1=(fabs(m_x - other.m_x)<C_ERROR_THRESHOLD);
+	bool b2=(fabs(m_y - other.m_y)<C_ERROR_THRESHOLD);
+    return (b1&&b2);
 }
 
 bool TPoint::operator!=(const TPoint& other) const {

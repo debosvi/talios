@@ -9,14 +9,16 @@ namespace Talios {
 class TPoint {
     
 public:
-    TPoint(const TDecimal x=0.0f, const TDecimal y=0.0f);
+    TPoint(const TDecimal x=0.0f, const TDecimal y=0.0f, const bool valid=false);
     TPoint(const TPoint &p);
     ~TPoint();
     
+    bool valid() const;
     TDecimal x() const;
     TDecimal y() const;
     TPoint& x(const TDecimal x);
     TPoint& y(const TDecimal y);
+    TPoint& valid(const bool valid);
     TDecimal distanceTo(const TPoint&p) const;
     
     bool operator<(const TPoint &other) const;
@@ -34,6 +36,7 @@ public:
 private:
     TDecimal m_x;
     TDecimal m_y;
+    bool m_valid;
 };
     
 } // namespace Talios

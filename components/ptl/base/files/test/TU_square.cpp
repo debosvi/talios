@@ -15,6 +15,38 @@ void TSquare_cppunit::setUp() {
 void TSquare_cppunit::tearDown() {
 }
 
+void TSquare_cppunit::integrity() {
+	TPoint bl(0.0f,0.0f);
+	TPoint br(1.0f,0.0f);
+	TPoint tl(0.0f,1.0f);
+	TPoint tr(1.0f,1.0f);
+	TSquare s1;
+	TSquare s2(tl,br);
+	TSquare s3(br,tl);
+	TSquare s4(tl.x(), tl.y(), br.x(), br.y());
+	
+    // check s1
+    CPPUNIT_ASSERT(s1.tl().x()==0.0f);
+    CPPUNIT_ASSERT(s1.tl().y()==0.0f);
+    CPPUNIT_ASSERT(s1.br().x()==0.0f);
+    CPPUNIT_ASSERT(s1.br().y()==0.0f);
+    // check s2
+    CPPUNIT_ASSERT(s2.tl()==tl);
+    CPPUNIT_ASSERT(s2.br()==br);
+    CPPUNIT_ASSERT(s2.tr()==tr);
+    CPPUNIT_ASSERT(s2.bl()==bl);
+    // check s3
+    CPPUNIT_ASSERT(s3.tl()==tl);
+    CPPUNIT_ASSERT(s3.br()==br);
+    CPPUNIT_ASSERT(s3.tr()==tr);
+    CPPUNIT_ASSERT(s3.bl()==bl);
+    // check s4
+    CPPUNIT_ASSERT(s4.tl()==tl);
+    CPPUNIT_ASSERT(s4.br()==br);
+    CPPUNIT_ASSERT(s4.tr()==tr);
+    CPPUNIT_ASSERT(s4.bl()==bl);
+}
+
 void TSquare_cppunit::isIn() {
     TPoint p1(1.0f, 2.0f);
     TPoint p2(10.0f, 2.0f);
@@ -40,6 +72,6 @@ void TSquare_cppunit::split() {
 }
 
 void TSquare_cppunit::_isIn(const Talios::TSquare& s, const Talios::TPoint& p, const bool check) {
-    bool res = s.isIn(p);
+    bool res = s.in(p);
     CPPUNIT_ASSERT(res==check);
 }

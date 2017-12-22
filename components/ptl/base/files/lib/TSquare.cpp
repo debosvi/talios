@@ -19,18 +19,18 @@ TSquare::TSquare(const TPoint &p, const TPoint& q) :
 }
 
 TSquare::TSquare(const TPoint &p, const TDecimal lg) : 
-m_tl(p.x()-lg/2.0f,p.y()+lg/2.0f), 
-m_br(p.x()+lg/2.0f,p.y()-lg/2.0f)
-{}
+		m_tl(p.x()-lg/2.0f,p.y()+lg/2.0f), 
+		m_br(p.x()+lg/2.0f,p.y()-lg/2.0f) {
+}
 
 TSquare::TSquare(const TDecimal cx, const TDecimal cy, const TDecimal lg)  : 
-	m_tl(cx-lg/2.0f,cy-lg/2.0f), 
-	m_br(cx+lg/2.0f,cy+lg/2.0f)
-{}	
+		m_tl(cx-lg/2.0f,cy-lg/2.0f), 
+		m_br(cx+lg/2.0f,cy+lg/2.0f) {
+}	
 	
 TSquare::TSquare(const TSquare &s) : 
-    m_tl(s.m_tl), m_br(s.m_br)
-{}
+    	m_tl(s.m_tl), m_br(s.m_br) {
+}
       
 TSquare::~TSquare() {}
 
@@ -39,7 +39,7 @@ TPoint TSquare::br() const { return m_br; }
 TPoint TSquare::tr() const { return TPoint(m_br.x(), m_tl.y()); }
 TPoint TSquare::bl() const { return TPoint(m_tl.x(), m_br.y()); }
 
-bool TSquare::isIn(const TPoint &p) const {
+bool TSquare::in(const TPoint &p) const {
     TDecimal sq_surf=this->surface();
     TDecimal s1=TPoint::surface(this->tl(), this->tr(), p);
     TDecimal s2=TPoint::surface(this->tl(), this->br(), p);
@@ -70,7 +70,7 @@ TListSegment TSquare::split() {
     list.push_back(TSegment(tl(),tr()));
     list.push_back(TSegment(tl(),bl()));
     list.push_back(TSegment(tr(),br()));
-    list.push_back(TSegment(tr(),br()));
+    list.push_back(TSegment(bl(),br()));
     return list;
 }
 

@@ -23,7 +23,7 @@ int TAllSegments::count() const {
 }
 
 bool TAllSegments::_present(const TSquare& s){
-    for (std::list<TSquare>::iterator it=m_lsq.begin(); it != m_lsq.end(); ++it) {
+    for (TListSquare::iterator it=m_lsq.begin(); it != m_lsq.end(); ++it) {
         if((*it)==s) return true;
     }
     return false;        
@@ -31,13 +31,17 @@ bool TAllSegments::_present(const TSquare& s){
 
 TListSegment TAllSegments::split() {
     TListSegment list;
-    for (std::list<TSquare>::iterator it=m_lsq.begin(); it != m_lsq.end(); ++it) {
+    for (TListSquare::iterator it=m_lsq.begin(); it != m_lsq.end(); ++it) {
         TListSegment local=it->split();
-        for (std::list<TSegment>::iterator it2=local.begin(); it2 != local.end(); ++it2) {
+        for (TListSegment::iterator it2=local.begin(); it2 != local.end(); ++it2) {
             list.push_back((*it2));
         }
     }
     return list;
+}
+
+TListSquare TAllSegments::squares() const {
+    return m_lsq;
 }
 
 } // namespace Talios

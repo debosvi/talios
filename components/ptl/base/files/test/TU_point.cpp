@@ -23,6 +23,8 @@ void TPoint_cppunit::distance() {
 
 void TPoint_cppunit::orientation() {
     _orientation(TPoint(0.0f, 0.0f), TPoint(0.0f, 1.0f), TPoint(0.0f, 2.0f), TPoint::ORIENT_COLINEAR);
+    _orientation(TPoint(0.0f, 0.0f), TPoint(0.0f, 1.0f), TPoint(0.0f, 1.0f), TPoint::ORIENT_COLINEAR);
+    _orientation(TPoint(0.0f, 0.0f), TPoint(1.0f, 1.0f), TPoint(1.0f, 1.0f), TPoint::ORIENT_COLINEAR);
     _orientation(TPoint(0.0f, 0.0f), TPoint(1.0f, 1.0f), TPoint(2.0f, 2.0f), TPoint::ORIENT_COLINEAR);
     _orientation(TPoint(0.0f, 0.0f), TPoint(1.0f, 0.0f), TPoint(2.0f, 0.0f), TPoint::ORIENT_COLINEAR);
     _orientation(TPoint(0.0f, 0.0f), TPoint(2.0f, 0.0f), TPoint(1.0f, -1.0f), TPoint::ORIENT_CLOCKWISE);

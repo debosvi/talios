@@ -23,14 +23,15 @@ public:
     bool operator==(const TSegment &other) const;
     bool operator!=(const TSegment &other) const;
     
-    bool isCrossing(const TSegment &s) const;
+    bool cross(const TSegment &s) const;
+    TPoint intersection(const TSegment &s) const;
     TDecimal surface(const TPoint& p) const;
 
     static bool onSegment(const TPoint& p, const TPoint& q, const TPoint& r);
         
 private:
     TPoint m_p;
-    TPoint m_q;
+    TPoint m_q;    
 };
 
 typedef std::list<TSegment> TListSegment;

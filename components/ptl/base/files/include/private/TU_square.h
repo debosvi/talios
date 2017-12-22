@@ -8,6 +8,7 @@
 class TSquare_cppunit : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE( TSquare_cppunit );
+    CPPUNIT_TEST( integrity );
     CPPUNIT_TEST( isIn );
     CPPUNIT_TEST( split );
     CPPUNIT_TEST_SUITE_END();
@@ -16,6 +17,7 @@ public:
     void setUp();
     void tearDown();
 
+    void integrity();
     void isIn();
     void split();
     
