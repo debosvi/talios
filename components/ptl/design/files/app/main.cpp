@@ -118,8 +118,35 @@ static TListSegment split_all(TListSegment& in) {
 /******************************************************************************/
 /******************************************************************************/
 static TListSegment remove_internal(TListSegment& in) {
-	TListSegment out=in;
-    	
+    TListSegment out=in;
+    TListSegment rem;
+    TListSquare sq=squares.squares();
+
+    for (TListSquare::iterator it2=sq.begin(); it2 != sq.end(); ++it2) {
+        TPoint tl=it2->tl();
+        TPoint br=it2->br();
+//         fprintf(stderr, "sq, tl(%0.08f,%0.08f), br(%0.08f,%0.08f)\n", tl.x(), tl.y(), br.x(), br.y());	
+                
+        for (TListSegment::iterator it=out.begin(); it != out.end(); ++it) {
+            TPoint p=it->p();
+            TPoint q=it->q();
+//             fprintf(stderr, "seg, p(%0.08f,%0.08f), q(%0.08f,%0.08f)\n", p.x(), p.y(), q.x(), q.y());	
+            if(it2->in(p)) {
+//                 fprintf(stderr, "remove p\n");	
+                rem.push_back(*it);
+            }
+            else if(it2->in(q)) {
+//                 fprintf(stderr, "remove q\n");	
+                rem.push_back(*it);
+            }
+            
+        }
+    }		
+
+    for (TListSegment::iterator it=rem.begin(); it != rem.end(); ++it) {
+        out.remove(*it);
+    }
+        
 	return out;
 }
 

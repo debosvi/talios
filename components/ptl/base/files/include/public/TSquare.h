@@ -9,7 +9,7 @@ namespace Talios {
 class TSquare {
     
 public:
-    TSquare(const TDecimal x1=0.0f, const TDecimal y1=0.0f, const TDecimal x2=0.0f, const TDecimal y2=0.0f);
+    TSquare(const TDecimal x1, const TDecimal y1, const TDecimal x2, const TDecimal y2);
     TSquare(const TPoint &p, const TPoint& q);
     TSquare(const TPoint &p, const TDecimal lg);
     TSquare(const TDecimal cx, const TDecimal cy, const TDecimal lg);

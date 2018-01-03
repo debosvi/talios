@@ -1,5 +1,6 @@
 
 #include <math.h>
+#include <cstdio>
 
 #include <talios/TSegment.h>
 
@@ -109,13 +110,23 @@ TPoint TSegment::intersection(const TSegment &s) const {
 }
 
 bool TSegment::onSegment(const TPoint& p, const TPoint& q, const TPoint& r) {
-    if(p==q) return false;
-    if(q==r) return false;
+//     fprintf(stderr, "\n%s: p(%0.08f,%0.08f), q(%0.08f,%0.08f), r(%0.08f,%0.08f)\n", __PRETTY_FUNCTION__,
+//         p.x(), p.y(),
+//         q.x(), q.y(),
+//         r.x(), r.y()
+//     );	
+    if(p==q) return true;
+//     fprintf(stderr, "%s: step 1\n", __PRETTY_FUNCTION__);	
+    if(q==r) return true;
+//     fprintf(stderr, "%s: step 2\n", __PRETTY_FUNCTION__);	
     
     if (q.x() <= fmax(p.x(), r.x()) && q.x() >= fmin(p.x(), r.x()) &&
-        q.y() <= fmax(p.y(), r.y()) && q.y() >= fmin(p.y(), r.y())) 
+        q.y() <= fmax(p.y(), r.y()) && q.y() >= fmin(p.y(), r.y())) {
+//         fprintf(stderr, "%s: step 3\n", __PRETTY_FUNCTION__);	
         return true;
+    }
     
+//     fprintf(stderr, "%s: step 4\n", __PRETTY_FUNCTION__);	
     return false;
 }
 

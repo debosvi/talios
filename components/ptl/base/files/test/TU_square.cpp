@@ -20,16 +20,11 @@ void TSquare_cppunit::integrity() {
 	TPoint br(1.0f,0.0f);
 	TPoint tl(0.0f,1.0f);
 	TPoint tr(1.0f,1.0f);
-	TSquare s1;
-	TSquare s2(tl,br);
+
+    TSquare s2(tl,br);
 	TSquare s3(br,tl);
 	TSquare s4(tl.x(), tl.y(), br.x(), br.y());
 	
-    // check s1
-    CPPUNIT_ASSERT(s1.tl().x()==0.0f);
-    CPPUNIT_ASSERT(s1.tl().y()==0.0f);
-    CPPUNIT_ASSERT(s1.br().x()==0.0f);
-    CPPUNIT_ASSERT(s1.br().y()==0.0f);
     // check s2
     CPPUNIT_ASSERT(s2.tl()==tl);
     CPPUNIT_ASSERT(s2.br()==br);
@@ -48,19 +43,21 @@ void TSquare_cppunit::integrity() {
 }
 
 void TSquare_cppunit::isIn() {
-    TPoint p1(1.0f, 2.0f);
-    TPoint p2(10.0f, 2.0f);
-    TPoint p3(-0.5f, 2.0f);
-    TPoint p4(-0.5001f, 2.0f);
-    TPoint p5(-0.4999f, 2.0f);
     TPoint c(1.0f, 2.0f);
-    TSquare sq(c, 3.0f);
+    TDecimal size=3.0f;
+    TSquare sq(c, size);
 
-    _isIn(sq, p1, true);
-    _isIn(sq, p2, false);
-    _isIn(sq, p3, false);
-    _isIn(sq, p4, false);
-    _isIn(sq, p5, true);
+    TPoint p1(c);
+    TPoint p2(10.0f, 2.0f);
+    TPoint p3(sq.tl().x(), sq.tl().y());
+    TPoint p4(sq.tl().x()-0.0001f, sq.tl().y()-0.001f);
+    TPoint p5(sq.tl().x()+0.0001f, sq.tl().y()-0.001f);
+
+    _isIn(sq, p1, true, "test 1");
+    _isIn(sq, p2, false, "test 2");
+    _isIn(sq, p3, false, "test 3");
+    _isIn(sq, p4, false, "test 4");
+    _isIn(sq, p5, true, "test 5");
 }
 
 void TSquare_cppunit::split() {
@@ -71,7 +68,8 @@ void TSquare_cppunit::split() {
     CPPUNIT_ASSERT(ls.size()==4);
 }
 
-void TSquare_cppunit::_isIn(const Talios::TSquare& s, const Talios::TPoint& p, const bool check) {
+void TSquare_cppunit::_isIn(const Talios::TSquare& s, const Talios::TPoint& p, const bool check, const std::string& msg) {
+    fprintf(stderr, "%s: msg(%s)\n", __PRETTY_FUNCTION__, msg.c_str());	
     bool res = s.in(p);
-    CPPUNIT_ASSERT(res==check);
+    CPPUNIT_ASSERT_MESSAGE(msg, res==check);
 }

@@ -1,15 +1,19 @@
 
 #include <math.h>
+#include <cstdio>
 
 #include <talios/TPoint.h>
 
 namespace Talios {
-
+    
+TPoint::TPoint() : TPoint(0.0f, 0.0f, false) {
+    }
+    
 TPoint::TPoint(const TDecimal x, const TDecimal y, const bool valid) :
-        m_x(x), m_y(y), m_valid(valid) {
-}
-
-TPoint::TPoint(const TPoint &p) : m_x(p.m_x), m_y(p.m_y), m_valid(true) { }
+    m_x(x), m_y(y), m_valid(valid) {
+    }
+    
+TPoint::TPoint(const TPoint &p) : TPoint(p.m_x, p.m_y) { }
         
 TPoint::~TPoint() {}
 
@@ -76,8 +80,10 @@ bool TPoint::operator>(const TPoint& other) const {
 
 bool TPoint::operator==(const TPoint& other) const {
 	bool b1=(fabs(m_x - other.m_x)<C_ERROR_THRESHOLD);
-	bool b2=(fabs(m_y - other.m_y)<C_ERROR_THRESHOLD);
-    return (b1&&b2);
+    bool b2=(fabs(m_y - other.m_y)<C_ERROR_THRESHOLD);
+    bool b3=(m_valid==other.m_valid);
+//     fprintf(stderr, "%s: b1(%d), b2(%d), b3(%d)\n", __PRETTY_FUNCTION__, b1, b2, b3);	
+    return (b1 && b2 && b3);
 }
 
 bool TPoint::operator!=(const TPoint& other) const {

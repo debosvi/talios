@@ -9,7 +9,8 @@ namespace Talios {
 class TPoint {
     
 public:
-    TPoint(const TDecimal x=0.0f, const TDecimal y=0.0f, const bool valid=false);
+    TPoint();
+    TPoint(const TDecimal x, const TDecimal y, const bool valid=true);
     TPoint(const TPoint &p);
     ~TPoint();
     

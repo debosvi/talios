@@ -11,6 +11,7 @@ class TSegment_cppunit : public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE( TSegment_cppunit );
     CPPUNIT_TEST( integrity );
+    CPPUNIT_TEST( onto );
     CPPUNIT_TEST( cross );
     CPPUNIT_TEST( surface );
     CPPUNIT_TEST_SUITE_END();
@@ -21,6 +22,7 @@ public:
 
     void surface();
     void integrity();
+    void onto();
     void cross();
     
 private:

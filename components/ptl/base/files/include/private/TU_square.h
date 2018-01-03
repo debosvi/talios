@@ -22,7 +22,7 @@ public:
     void split();
     
 private:
-    void _isIn(const Talios::TSquare& s, const Talios::TPoint& p, const bool check);
+    void _isIn(const Talios::TSquare& s, const Talios::TPoint& p, const bool check, const std::string& msg);
 
 };
 
